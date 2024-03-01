@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     text-transform: uppercase;
-    line-height: 1.5;
+    line-height: 1.2;
     color: ${(props) => props.theme["blue-800"]};
   }
 
