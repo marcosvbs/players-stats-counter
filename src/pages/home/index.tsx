@@ -15,7 +15,7 @@ export function Home() {
           durante sua partida de futebol.
         </h2>
 
-        <Link className={"startLink"} to={"/"}>
+        <Link className={"startLink"} to={"/add-players"}>
           Começar
         </Link>
       </HomeContainer>

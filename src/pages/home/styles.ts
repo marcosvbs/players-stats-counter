@@ -8,10 +8,8 @@ export const HomeContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin: 1rem;
+  padding: 1rem;
   height: calc(100vh - 6rem);
-
-  cursor: pointer;
 
   .specialWord {
     color: ${(props) => props.theme.yellow};
@@ -26,6 +24,8 @@ export const HomeContainer = styled.div`
     border-radius: 10px;
 
     text-decoration: none;
+
+    cursor: pointer;
 
     &:active {
       filter: brightness(85%);
