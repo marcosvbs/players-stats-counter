@@ -15,16 +15,16 @@ export const AddPlayersContainer = styled.div`
     gap: 1rem;
 
     input {
-      padding: 0.5rem 0.75rem;
+      padding: 0.75rem;
 
-      border: 2px solid ${(props) => props.theme.gray};
-      border-radius: 10px;
+      background: ${(props) => props.theme["low-opacity-gray"]};
       color: ${(props) => props.theme["blue-800"]};
 
+      border: none;
+      border-radius: 10px;
       outline: 2px solid transparent;
 
       &:focus {
-        border: 2px solid transparent;
         outline: 2px solid ${(props) => props.theme.yellow};
       }
 
@@ -76,6 +76,65 @@ export const AddPlayersContainer = styled.div`
         &:active {
           filter: brightness(85%);
         }
+      }
+    }
+  }
+`;
+
+export const MatchControllerContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  background: ${(props) => props.theme.white};
+  border-top: 1px solid ${(props) => props.theme["low-opacity-gray"]};
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 1rem;
+    width: 100%;
+    max-width: 425px;
+
+    .startMatchButton {
+      width: 100%;
+      padding: 0.5rem 1rem;
+
+      background: ${(props) => props.theme["blue-400"]};
+
+      border-radius: 10px;
+      border: none;
+
+      cursor: pointer;
+
+      &:active {
+        filter: brightness(85%);
+      }
+
+      a {
+        color: ${(props) => props.theme["blue-600"]};
+        text-decoration: none;
+      }
+    }
+
+    .backLink {
+      padding: 0.5rem 1rem;
+
+      color: ${(props) => props.theme["blue-600"]};
+      text-decoration: none;
+
+      &:active {
+        filter: brightness(85%);
       }
     }
   }

@@ -12,8 +12,6 @@ export const HeaderContainer = styled.header`
 
   height: 3rem;
 
-  border-radius: 0 0 20px 20px;
-
   .material-symbols-outlined {
     color: ${(props) => props.theme["blue-600"]};
     font-size: 2rem;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Header } from "../../components/Header";
-import { AddPlayersContainer } from "./styles";
+import { AddPlayersContainer, MatchControllerContainer } from "./styles";
+import { Link } from "react-router-dom";
 
 interface Player {
   id: number;
@@ -85,6 +86,17 @@ export function AddPlayers() {
             </button>
           </div>
         </div>
+
+        <MatchControllerContainer>
+          <div>
+            <button className={"startMatchButton"}>
+              <Link to={"/"}>Iniciar partida</Link>
+            </button>
+            <Link className={"backLink"} to={"/"}>
+              Voltar
+            </Link>
+          </div>
+        </MatchControllerContainer>
       </AddPlayersContainer>
     </>
   );

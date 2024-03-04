@@ -4,6 +4,8 @@ export const defaultTheme = {
   gray: "#767B91",
   yellow: "#EBB726",
 
+  "low-opacity-gray": "rgb(118, 123, 145, 0.2)",
+
   "blue-800": "#051A39",
   "blue-600": "#0D4191",
   "blue-400": "#44C3F0",
