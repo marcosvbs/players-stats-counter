@@ -25,7 +25,7 @@ export const AddPlayersContainer = styled.div`
       outline: 2px solid transparent;
 
       &:focus {
-        outline: 2px solid ${(props) => props.theme.yellow};
+        outline: 2px solid ${(props) => props.theme.gray};
       }
 
       &::placeholder {
