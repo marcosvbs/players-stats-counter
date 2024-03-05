@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Header } from "../../components/Header";
-import { AddPlayersContainer, MatchController } from "./styles";
+import { AddPlayersContainer, MatchInProgressContainer } from "./styles";
 import { Link } from "react-router-dom";
 import { PlayerRankingContext } from "../../contexts/PlayerRankingContext";
 
@@ -72,6 +72,7 @@ export function AddPlayers() {
               placeholder={"Nome do jogador"}
               value={player.name}
               onChange={(event) => onChangePlayerName(event, player.id)}
+              maxLength={33}
               required
             />
           ))}
@@ -94,7 +95,7 @@ export function AddPlayers() {
           </div>
         </div>
 
-        <MatchController>
+        <MatchInProgressContainer>
           <div>
             <button
               className={"startMatchButton"}
@@ -107,7 +108,7 @@ export function AddPlayers() {
               Voltar
             </Link>
           </div>
-        </MatchController>
+        </MatchInProgressContainer>
       </AddPlayersContainer>
     </>
   );

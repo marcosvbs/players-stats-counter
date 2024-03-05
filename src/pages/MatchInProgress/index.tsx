@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { Header } from "../../components/Header";
-import { MatchInProgressContainer, PlayerRank } from "./styles";
-import { MatchController } from "../AddPlayers/styles";
+import {
+  MatchControllerContainer,
+  MatchInProgressContainer,
+  PlayerRank,
+} from "./styles";
 import { useContext } from "react";
 import { PlayerRankingContext } from "../../contexts/PlayerRankingContext";
 
@@ -22,12 +25,18 @@ export function MatchInProgress() {
         <PlayerRank>
           <thead>
             <th>Nome</th>
-            <th>gols</th>
-            <th>Assists</th>
+            <th>
+              <span className="material-symbols-outlined">sports_soccer</span>
+              gols
+            </th>
+            <th>
+              <span className="material-symbols-outlined">handshake</span>
+              Assists
+            </th>
           </thead>
           <tbody>
             {playerRanking.map((player) => (
-              <tr>
+              <tr key={player.id}>
                 <td>{player.name}</td>
                 <td>
                   <button>
@@ -52,16 +61,17 @@ export function MatchInProgress() {
           </tbody>
         </PlayerRank>
 
-        <MatchController>
+        <MatchControllerContainer>
           <div>
-            <button className={"startMatchButton"}>
-              <Link to={"/match-in-progress"}>Iniciar partida</Link>
+            <button className={"EndMatchButton"}>
+              <Link to={"/match-in-progress"}>Finalizar partida</Link>
             </button>
-            <Link className={"backLink"} to={"/add-players"}>
-              Voltar
-            </Link>
+
+            <button className={"cancelMatchButton"}>
+              <Link to={"/"}>Cancelar partida</Link>
+            </button>
           </div>
-        </MatchController>
+        </MatchControllerContainer>
       </MatchInProgressContainer>
     </>
   );

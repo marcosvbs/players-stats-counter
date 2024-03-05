@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const AddPlayersContainer = styled.div`
   margin: 0 auto;
-  padding: 1.5rem 1rem;
-  max-width: 425px;
+  padding: 1rem;
+  min-width: 320px;
 
   h3 {
     margin-bottom: 1rem;
@@ -81,7 +81,7 @@ export const AddPlayersContainer = styled.div`
   }
 `;
 
-export const MatchController = styled.div`
+export const MatchInProgressContainer = styled.div`
   width: 100%;
 
   display: flex;

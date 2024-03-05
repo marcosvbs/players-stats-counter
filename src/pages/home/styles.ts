@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
   margin: 0 auto;
 
-  max-width: 425px;
+  min-width: 320px;
 
   display: flex;
   flex-direction: column;
