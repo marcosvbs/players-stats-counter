@@ -1,3 +1,5 @@
+import React, { createContext, useState } from "react";
+
 interface Player {
   id: number;
   name: string;
@@ -19,9 +21,11 @@ interface PlayerRankingContext {
 
 export const PlayerRankingContext = createContext({} as PlayerRankingContext);
 
-import React, { createContext, useState } from "react";
-
-export function PlayerRanking({ children }: { children: React.ReactNode }) {
+export function PlayerRankingContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [playerRanking, setPlayerRanking] = useState<PlayerRanking>([]);
 
   function createPlayerRanking(playerList: Player[]) {

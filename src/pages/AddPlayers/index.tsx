@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Header } from "../../components/Header";
 import { AddPlayersContainer, MatchController } from "./styles";
 import { Link } from "react-router-dom";
+import { PlayerRankingContext } from "../../contexts/PlayerRankingContext";
 
 interface Player {
   id: number;
@@ -15,6 +16,8 @@ export function AddPlayers() {
       name: "",
     },
   ]);
+
+  const { createPlayerRanking } = useContext(PlayerRankingContext);
 
   function onChangePlayerName(
     event: React.ChangeEvent<HTMLInputElement>,
@@ -48,6 +51,10 @@ export function AddPlayers() {
     );
 
     setPlayers(updatedPlayers);
+  }
+
+  function handleCreatePlayerRanking() {
+    createPlayerRanking(players);
   }
 
   return (
@@ -89,7 +96,10 @@ export function AddPlayers() {
 
         <MatchController>
           <div>
-            <button className={"startMatchButton"}>
+            <button
+              className={"startMatchButton"}
+              onClick={handleCreatePlayerRanking}
+            >
               <Link to={"/match-in-progress"}>Iniciar partida</Link>
             </button>
 
