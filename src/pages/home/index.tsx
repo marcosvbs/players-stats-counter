@@ -9,9 +9,8 @@ export function Home() {
       <HomeContainer>
         <h2>
           Contabilize
-          <br /> <span className="specialWord">gols</span>,{" "}
-          <span className="specialWord">assistencias</span>,{" "}
-          <span className="specialWord">faltas</span> <br />e outras informações
+          <span className="specialWord"> gols </span>e
+          <span className="specialWord"> assistencias </span>
           durante sua partida de futebol.
         </h2>
 

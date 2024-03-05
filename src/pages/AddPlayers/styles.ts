@@ -81,7 +81,7 @@ export const AddPlayersContainer = styled.div`
   }
 `;
 
-export const MatchControllerContainer = styled.div`
+export const MatchController = styled.div`
   width: 100%;
 
   display: flex;
@@ -108,10 +108,8 @@ export const MatchControllerContainer = styled.div`
 
     .startMatchButton {
       width: 100%;
-      padding: 0.5rem 1rem;
 
       background: ${(props) => props.theme["blue-400"]};
-
       border-radius: 10px;
       border: none;
 
@@ -122,7 +120,14 @@ export const MatchControllerContainer = styled.div`
       }
 
       a {
+        display: flex;
+        justify-content: center;
+
+        width: 100%;
+        padding: 0.5rem 1rem;
+
         color: ${(props) => props.theme["blue-600"]};
+
         text-decoration: none;
       }
     }
