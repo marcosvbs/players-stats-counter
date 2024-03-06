@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { Home } from "../pages/Home";
 import { AddPlayers } from "../pages/AddPlayers";
 import { MatchInProgress } from "../pages/MatchInProgress";
+import { Home } from "../pages/Home";
 
 export function Router() {
   return (
