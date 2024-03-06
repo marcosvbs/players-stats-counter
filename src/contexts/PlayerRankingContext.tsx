@@ -21,6 +21,7 @@ interface PlayerRankingContext {
   decrementPlayerNumGoals: (playerId: number) => void;
   incrementPlayerNumAssists: (playerId: number) => void;
   decrementPlayerNumAssists: (playerId: number) => void;
+  resetPlayerRank: () => void;
 }
 
 export const PlayerRankingContext = createContext({} as PlayerRankingContext);
@@ -87,6 +88,10 @@ export function PlayerRankingContextProvider({
     setPlayerRanking(newPlayerRanking);
   }
 
+  function resetPlayerRank() {
+    setPlayerRanking([]);
+  }
+
   return (
     <PlayerRankingContext.Provider
       value={{
@@ -96,6 +101,7 @@ export function PlayerRankingContextProvider({
         decrementPlayerNumGoals,
         incrementPlayerNumAssists,
         decrementPlayerNumAssists,
+        resetPlayerRank,
       }}
     >
       {children}
