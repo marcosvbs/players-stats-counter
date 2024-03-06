@@ -24,6 +24,9 @@ export const AddPlayersContainer = styled.div`
       border-radius: 10px;
       outline: 2px solid transparent;
 
+      font-size: 1rem;
+      text-size-adjust: 100%;
+
       &:focus {
         outline: 2px solid ${(props) => props.theme.gray};
       }
