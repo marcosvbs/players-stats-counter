@@ -24,19 +24,15 @@ export function MatchInProgress() {
 
         <PlayerRank>
           <thead>
-            <th>Nome</th>
-            <th>
-              <span className="material-symbols-outlined">sports_soccer</span>
-              gols
-            </th>
-            <th>
-              <span className="material-symbols-outlined">handshake</span>
-              Assists
-            </th>
+            <tr className={"titleRow"}>
+              <th>Nome</th>
+              <th>gols</th>
+              <th>Assists</th>
+            </tr>
           </thead>
           <tbody>
             {playerRanking.map((player) => (
-              <tr key={player.id}>
+              <tr key={player.id} className={"playerRow"}>
                 <td>{player.name}</td>
                 <td>
                   <button>

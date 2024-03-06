@@ -11,45 +11,46 @@ export const MatchInProgressContainer = styled.div`
 
 export const PlayerRank = styled.table`
   width: 100%;
-
   margin-bottom: 8.75rem;
 
-  thead,
-  tbody tr {
+  thead .titleRow,
+  tbody .playerRow {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     gap: 1rem;
   }
 
-  thead {
-    align-items: end;
+  .titleRow {
+    text-transform: uppercase;
   }
 
-  thead th:nth-child(1),
-  tbody th:nth-child(1) {
+  .titleRow th:nth-child(1),
+  .playerRow td:nth-child(1) {
     text-align: left;
   }
 
-  thead th:nth-child(2),
-  thead th:nth-child(3),
-  tbody tr td:nth-child(2),
-  tbody tr td:nth-child(3) {
+  .titleRow th:nth-child(2),
+  .titleRow th:nth-child(3),
+  .playerRow td:nth-child(2),
+  .playerRow td:nth-child(3) {
     text-align: center;
+    align-items: center;
+    justify-content: center;
   }
 
-  thead th:nth-child(2),
-  thead th:nth-child(3) {
+  .titleRow th:nth-child(2),
+  .titleRow th:nth-child(3) {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  thead,
-  tr {
+  .titleRow th,
+  .playerRow td {
     padding: 1rem;
   }
 
-  tr {
+  .playerRow {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -57,21 +58,24 @@ export const PlayerRank = styled.table`
     border-top: 1px solid ${(props) => props.theme["low-opacity-gray"]};
   }
 
-  tr:last-child {
+  .playerRow:last-child {
     border-bottom: 1px solid ${(props) => props.theme["low-opacity-gray"]};
   }
 
-  tbody tr td:nth-child(2),
-  tbody tr td:nth-child(3) {
+  .playerRow td:nth-child(2),
+  .playerRow td:nth-child(3) {
     display: flex;
     flex-direction: column;
   }
 
-  tr td button {
+  .playerRow button {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    max-width: 5rem;
+    width: 100%;
 
     padding: 0.25rem 1.25rem;
 
@@ -83,12 +87,12 @@ export const PlayerRank = styled.table`
     cursor: pointer;
   }
 
-  tr td button:nth-child(1) {
+  .playerRow button:nth-child(1) {
     color: ${(props) => props.theme["blue-600"]};
     background: ${(props) => props.theme["blue-200"]};
   }
 
-  tr td button:nth-child(2) {
+  .playerRow button:nth-child(2) {
     color: ${(props) => props.theme["red-400"]};
     background: ${(props) => props.theme["red-200"]};
   }
