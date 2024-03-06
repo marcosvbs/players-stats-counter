@@ -11,7 +11,13 @@ import { PlayerRankingContext } from "../../contexts/PlayerRankingContext";
 export function MatchInProgress() {
   const todayDate = new Date().toLocaleDateString("pt-br");
 
-  const { playerRanking } = useContext(PlayerRankingContext);
+  const {
+    playerRanking,
+    incrementPlayerNumGoals,
+    decrementPlayerNumGoals,
+    incrementPlayerNumAssists,
+    decrementPlayerNumAssists,
+  } = useContext(PlayerRankingContext);
 
   return (
     <>
@@ -35,20 +41,26 @@ export function MatchInProgress() {
               <tr key={player.id} className={"playerRow"}>
                 <td>{player.name}</td>
                 <td>
-                  <button>
+                  <button onClick={() => incrementPlayerNumGoals(player.id)}>
                     <span className="material-symbols-outlined">add</span>
                   </button>
                   {player.numGoals}
-                  <button>
+                  <button
+                    onClick={() => decrementPlayerNumGoals(player.id)}
+                    disabled={player.numGoals <= 0}
+                  >
                     <span className="material-symbols-outlined">remove</span>
                   </button>
                 </td>
                 <td>
-                  <button>
+                  <button onClick={() => incrementPlayerNumAssists(player.id)}>
                     <span className="material-symbols-outlined">add</span>
                   </button>
                   {player.numAssists}
-                  <button>
+                  <button
+                    onClick={() => decrementPlayerNumAssists(player.id)}
+                    disabled={player.numAssists <= 0}
+                  >
                     <span className="material-symbols-outlined">remove</span>
                   </button>
                 </td>

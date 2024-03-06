@@ -97,6 +97,13 @@ export const PlayerRank = styled.table`
     background: ${(props) => props.theme["red-200"]};
   }
 
+  .playerRow button:disabled {
+    color: ${(props) => props.theme.gray};
+    background: ${(props) => props.theme["low-opacity-gray"]};
+
+    cursor: auto;
+  }
+
   td,
   th {
     min-width: 60px;

@@ -17,6 +17,10 @@ type PlayerRanking = RankedPlayer[];
 interface PlayerRankingContext {
   playerRanking: PlayerRanking;
   createPlayerRanking: (playerList: Player[]) => void;
+  incrementPlayerNumGoals: (playerId: number) => void;
+  decrementPlayerNumGoals: (playerId: number) => void;
+  incrementPlayerNumAssists: (playerId: number) => void;
+  decrementPlayerNumAssists: (playerId: number) => void;
 }
 
 export const PlayerRankingContext = createContext({} as PlayerRankingContext);
@@ -39,9 +43,60 @@ export function PlayerRankingContextProvider({
     setPlayerRanking(newPlayerRanking);
   }
 
+  function incrementPlayerNumGoals(playerId: number) {
+    const newPlayerRanking = playerRanking.map((player) => {
+      if (player.id === playerId) {
+        return { ...player, numGoals: player.numGoals + 1 };
+      }
+      return player;
+    });
+
+    setPlayerRanking(newPlayerRanking);
+  }
+
+  function decrementPlayerNumGoals(playerId: number) {
+    const newPlayerRanking = playerRanking.map((player) => {
+      if (player.id === playerId) {
+        return { ...player, numGoals: player.numGoals - 1 };
+      }
+      return player;
+    });
+
+    setPlayerRanking(newPlayerRanking);
+  }
+
+  function incrementPlayerNumAssists(playerId: number) {
+    const newPlayerRanking = playerRanking.map((player) => {
+      if (player.id === playerId) {
+        return { ...player, numAssists: player.numAssists + 1 };
+      }
+      return player;
+    });
+
+    setPlayerRanking(newPlayerRanking);
+  }
+
+  function decrementPlayerNumAssists(playerId: number) {
+    const newPlayerRanking = playerRanking.map((player) => {
+      if (player.id === playerId) {
+        return { ...player, numAssists: player.numAssists - 1 };
+      }
+      return player;
+    });
+
+    setPlayerRanking(newPlayerRanking);
+  }
+
   return (
     <PlayerRankingContext.Provider
-      value={{ playerRanking, createPlayerRanking }}
+      value={{
+        playerRanking,
+        createPlayerRanking,
+        incrementPlayerNumGoals,
+        decrementPlayerNumGoals,
+        incrementPlayerNumAssists,
+        decrementPlayerNumAssists,
+      }}
     >
       {children}
     </PlayerRankingContext.Provider>
