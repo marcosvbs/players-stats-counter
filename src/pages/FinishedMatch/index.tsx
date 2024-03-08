@@ -1,7 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { PlayerRankingContext } from "../../contexts/PlayerRankingContext";
-import { FinishedMatchContainer, PlayerRank } from "./styles";
+import {
+  FinishedMatchContainer,
+  FinishedMatchControllerContainer,
+  PlayerRank,
+} from "./styles";
+import { GoToHomeModal } from "../../components/GoToHomeModal";
 
 interface RankedPlayer {
   id: number;
@@ -15,9 +20,15 @@ export function FinishedMatch() {
     [] as RankedPlayer[]
   );
 
+  const [goToHomeModalIsOpen, setGoToHomeModalIsOpen] = useState(false);
+
   const todayDate = new Date().toLocaleDateString("pt-br");
 
-  const { playerRanking } = useContext(PlayerRankingContext);
+  const { playerRanking, resetPlayerRank } = useContext(PlayerRankingContext);
+
+  function handleCancelMatch() {
+    resetPlayerRank();
+  }
 
   function compareMostGoalsPlayer(a: RankedPlayer, b: RankedPlayer) {
     if (a.numGoals > b.numGoals) {
@@ -100,23 +111,27 @@ export function FinishedMatch() {
           </tbody>
         </PlayerRank>
 
-        {/* <MatchControllerContainer>
+        <FinishedMatchControllerContainer>
           <div>
-            <button
-              className={"EndMatchButton"}
-              onClick={() => setEndModalIsOpen(true)}
-            >
-              <Link to={"/match-in-progress"}>Finalizar partida</Link>
+            <button className={"downloadFinalMatchRankButton"}>
+              Baixar classificação da partida
             </button>
 
             <button
-              className={"cancelMatchButton"}
-              onClick={() => setCancelModalIsOpen(true)}
+              className={"homeButton"}
+              onClick={() => setGoToHomeModalIsOpen(true)}
             >
-              Cancelar partida
+              Voltar ao inicio
             </button>
           </div>
-        </MatchControllerContainer> */}
+        </FinishedMatchControllerContainer>
+
+        {goToHomeModalIsOpen ? (
+          <GoToHomeModal
+            onGoToHome={handleCancelMatch}
+            onCloseModal={() => setGoToHomeModalIsOpen(false)}
+          />
+        ) : null}
       </FinishedMatchContainer>
     </>
   );

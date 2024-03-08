@@ -147,7 +147,7 @@ export const MatchControllerContainer = styled.div`
     width: 100%;
     max-width: 425px;
 
-    .EndMatchButton {
+    .endMatchButton {
       width: 100%;
 
       background: ${(props) => props.theme["blue-400"]};

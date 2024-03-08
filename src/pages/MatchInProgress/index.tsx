@@ -83,7 +83,7 @@ export function MatchInProgress() {
         <MatchControllerContainer>
           <div>
             <button
-              className={"EndMatchButton"}
+              className={"endMatchButton"}
               onClick={() => setEndModalIsOpen(true)}
             >
               <Link to={"/match-in-progress"}>Finalizar partida</Link>

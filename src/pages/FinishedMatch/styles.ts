@@ -121,3 +121,71 @@ export const PlayerRank = styled.table`
     font-weight: 400;
   }
 `;
+
+export const FinishedMatchControllerContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  background: ${(props) => props.theme.white};
+  border-top: 1px solid ${(props) => props.theme["low-opacity-gray"]};
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 1rem;
+    width: 100%;
+    max-width: 425px;
+
+    .downloadFinalMatchRankButton {
+      display: flex;
+      justify-content: center;
+
+      width: 100%;
+      padding: 0.5rem 1rem;
+
+      color: ${(props) => props.theme["blue-600"]};
+      background: ${(props) => props.theme["blue-400"]};
+      border-radius: 10px;
+      border: none;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+      &:active {
+        filter: brightness(85%);
+      }
+    }
+
+    .homeButton {
+      display: flex;
+      justify-content: center;
+
+      width: 100%;
+      padding: 0.5rem 1rem;
+
+      background: none;
+      border-radius: 10px;
+      border: none;
+
+      color: ${(props) => props.theme["blue-600"]};
+
+      cursor: pointer;
+
+      &:active {
+        filter: brightness(85%);
+      }
+    }
+  }
+`;
