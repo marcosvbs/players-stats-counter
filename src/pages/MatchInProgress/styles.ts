@@ -174,28 +174,22 @@ export const MatchControllerContainer = styled.div`
     }
 
     .cancelMatchButton {
+      display: flex;
+      justify-content: center;
+
       width: 100%;
+      padding: 0.5rem 1rem;
 
       background: none;
       border-radius: 10px;
       border: none;
 
+      color: ${(props) => props.theme["red-400"]};
+
       cursor: pointer;
 
       &:active {
         filter: brightness(85%);
-      }
-
-      a {
-        display: flex;
-        justify-content: center;
-
-        width: 100%;
-        padding: 0.5rem 1rem;
-
-        color: ${(props) => props.theme["red-400"]};
-
-        text-decoration: none;
       }
     }
   }

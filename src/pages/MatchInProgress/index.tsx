@@ -5,10 +5,13 @@ import {
   MatchInProgressContainer,
   PlayerRank,
 } from "./styles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PlayerRankingContext } from "../../contexts/PlayerRankingContext";
+import { CancelMatchModal } from "../../components/CancelMatchModal";
 
 export function MatchInProgress() {
+  const [cancelModalIsOpen, setCancelModalIsOpen] = useState(false);
+
   const todayDate = new Date().toLocaleDateString("pt-br");
 
   const {
@@ -17,11 +20,17 @@ export function MatchInProgress() {
     decrementPlayerNumGoals,
     incrementPlayerNumAssists,
     decrementPlayerNumAssists,
+    resetPlayerRank,
   } = useContext(PlayerRankingContext);
+
+  function handleCancelMatch() {
+    resetPlayerRank();
+  }
 
   return (
     <>
       <Header />
+
       <MatchInProgressContainer>
         <h3>
           Partida em andamento <br />
@@ -75,12 +84,22 @@ export function MatchInProgress() {
               <Link to={"/match-in-progress"}>Finalizar partida</Link>
             </button>
 
-            <button className={"cancelMatchButton"}>
-              <Link to={"/"}>Cancelar partida</Link>
+            <button
+              className={"cancelMatchButton"}
+              onClick={() => setCancelModalIsOpen(true)}
+            >
+              Cancelar partida
             </button>
           </div>
         </MatchControllerContainer>
       </MatchInProgressContainer>
+
+      {cancelModalIsOpen ? (
+        <CancelMatchModal
+          onCancelMatch={handleCancelMatch}
+          onCloseModal={() => setCancelModalIsOpen(false)}
+        />
+      ) : null}
     </>
   );
 }
