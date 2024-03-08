@@ -8,9 +8,11 @@ import {
 import { useContext, useState } from "react";
 import { PlayerRankingContext } from "../../contexts/PlayerRankingContext";
 import { CancelMatchModal } from "../../components/CancelMatchModal";
+import { EndMatchModal } from "../../components/EndMatchModal";
 
 export function MatchInProgress() {
   const [cancelModalIsOpen, setCancelModalIsOpen] = useState(false);
+  const [endModalIsOpen, setEndModalIsOpen] = useState(false);
 
   const todayDate = new Date().toLocaleDateString("pt-br");
 
@@ -80,7 +82,10 @@ export function MatchInProgress() {
 
         <MatchControllerContainer>
           <div>
-            <button className={"EndMatchButton"}>
+            <button
+              className={"EndMatchButton"}
+              onClick={() => setEndModalIsOpen(true)}
+            >
               <Link to={"/match-in-progress"}>Finalizar partida</Link>
             </button>
 
@@ -99,6 +104,10 @@ export function MatchInProgress() {
           onCancelMatch={handleCancelMatch}
           onCloseModal={() => setCancelModalIsOpen(false)}
         />
+      ) : null}
+
+      {endModalIsOpen ? (
+        <EndMatchModal onCloseModal={() => setEndModalIsOpen(false)} />
       ) : null}
     </>
   );
