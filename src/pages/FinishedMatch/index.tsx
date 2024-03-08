@@ -15,10 +15,14 @@ interface RankedPlayer {
   numAssists: number;
 }
 
+type Filter = "byGoals" | "byAssists";
+
 export function FinishedMatch() {
   const [finishedPlayerRank, setFinishedPlayerRank] = useState(
     [] as RankedPlayer[]
   );
+
+  const [filterApplied, setFilterApplied] = useState<Filter>("byGoals");
 
   const [goToHomeModalIsOpen, setGoToHomeModalIsOpen] = useState(false);
 
@@ -66,12 +70,14 @@ export function FinishedMatch() {
     const sortedRank = playerRanking.sort(compareMostGoalsPlayer);
 
     setFinishedPlayerRank([...sortedRank]);
+    setFilterApplied("byGoals");
   }
 
   function handleFilterRankByAssists() {
     const sortedRank = playerRanking.sort(compareMostAssistsPlayer);
 
     setFinishedPlayerRank([...sortedRank]);
+    setFilterApplied("byAssists");
   }
 
   useEffect(() => {
@@ -93,17 +99,34 @@ export function FinishedMatch() {
             <tr className={"titleRow"}>
               <th>Nome</th>
               <th>
-                <button onClick={handleFilterRankByGoals}>gols</button>
+                <button
+                  className={"filterButton"}
+                  onClick={handleFilterRankByGoals}
+                  disabled={filterApplied === "byGoals"}
+                >
+                  gols
+                </button>
               </th>
               <th>
-                <button onClick={handleFilterRankByAssists}>Assists</button>
+                <button
+                  className={"filterButton"}
+                  onClick={handleFilterRankByAssists}
+                  disabled={filterApplied === "byAssists"}
+                >
+                  Assists
+                </button>
               </th>
             </tr>
           </thead>
           <tbody>
-            {finishedPlayerRank.map((player) => (
+            {finishedPlayerRank.map((player, index) => (
               <tr key={player.id} className={"playerRow"}>
-                <td>{player.name}</td>
+                <td>
+                  {player.name}{" "}
+                  {index === 0 ? (
+                    <span className="material-symbols-outlined">events</span>
+                  ) : null}
+                </td>
                 <td>{player.numGoals}</td>
                 <td>{player.numAssists}</td>
               </tr>

@@ -22,6 +22,8 @@ export const PlayerRank = styled.table`
 
   .titleRow {
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
   }
 
   .titleRow th:nth-child(1),
@@ -119,6 +121,24 @@ export const PlayerRank = styled.table`
   th span {
     font-size: 12px;
     font-weight: 400;
+  }
+
+  .filterButton {
+    padding: 0.25rem 0.5rem;
+
+    border: none;
+    border-radius: 10px;
+
+    color: ${(props) => props.theme["blue-600"]};
+    background: none;
+
+    &:active {
+      filter: brightness(85%);
+    }
+
+    &:disabled {
+      background: ${(props) => props.theme["blue-200"]};
+    }
   }
 `;
 
