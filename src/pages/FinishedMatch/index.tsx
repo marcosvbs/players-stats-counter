@@ -80,6 +80,24 @@ export function FinishedMatch() {
     setFilterApplied("byAssists");
   }
 
+  function displayTrophyIcon(index: number) {
+    if (index === 0) {
+      return (
+        <span className="material-symbols-outlined firstPlace">trophy</span>
+      );
+    } else if (index === 1) {
+      return (
+        <span className="material-symbols-outlined secondPlace">trophy</span>
+      );
+    } else if (index === 2) {
+      return (
+        <span className="material-symbols-outlined thirdPlace">trophy</span>
+      );
+    } else {
+      return null;
+    }
+  }
+
   useEffect(() => {
     setFinishedPlayerRank(playerRanking);
   });
@@ -122,10 +140,8 @@ export function FinishedMatch() {
             {finishedPlayerRank.map((player, index) => (
               <tr key={player.id} className={"playerRow"}>
                 <td>
-                  {player.name}{" "}
-                  {index === 0 ? (
-                    <span className="material-symbols-outlined">events</span>
-                  ) : null}
+                  {player.name}
+                  {displayTrophyIcon(index)}
                 </td>
                 <td>{player.numGoals}</td>
                 <td>{player.numAssists}</td>

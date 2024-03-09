@@ -70,6 +70,23 @@ export const PlayerRank = styled.table`
     flex-direction: column;
   }
 
+  .firstPlace {
+    color: #ebb726;
+  }
+  .secondPlace {
+    color: #9fa6c4;
+  }
+  .thirdPlace {
+    color: #cb8a3e;
+  }
+
+  .playerRow td {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   .playerRow button {
     display: flex;
     flex-direction: row;
