@@ -98,8 +98,28 @@ export function FinishedMatch() {
     }
   }
 
+  function handleDownload(finishedPlayerRank: RankedPlayer[]) {
+    const finishedPlayerRankAsJson = JSON.stringify(finishedPlayerRank);
+
+    const blob = new Blob([finishedPlayerRankAsJson], {
+      type: "application/vnd.ms-excel",
+    });
+
+    const downloadLink = document.createElement("a");
+
+    downloadLink.href = window.URL.createObjectURL(blob);
+    downloadLink.download = "classificacao_dos_jogadores.xls";
+
+    document.body.appendChild(downloadLink);
+
+    downloadLink.click();
+
+    document.body.removeChild(downloadLink);
+  }
+
   useEffect(() => {
     setFinishedPlayerRank(playerRanking);
+    handleFilterRankByGoals();
   });
 
   return (
@@ -152,7 +172,10 @@ export function FinishedMatch() {
 
         <FinishedMatchControllerContainer>
           <div>
-            <button className={"downloadFinalMatchRankButton"}>
+            <button
+              className={"downloadFinalMatchRankButton"}
+              onClick={() => handleDownload(finishedPlayerRank)}
+            >
               Baixar classificação da partida
             </button>
 
