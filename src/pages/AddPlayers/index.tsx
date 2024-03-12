@@ -54,7 +54,11 @@ export function AddPlayers() {
   }
 
   function handleCreatePlayerRanking() {
-    createPlayerRanking(players);
+    const namedPlayers = players.filter(
+      (player) => player.name[0] !== " " && player.name.length !== 0
+    );
+
+    createPlayerRanking(namedPlayers);
   }
 
   return (

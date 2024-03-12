@@ -41,6 +41,8 @@ export const AddPlayersContainer = styled.div`
       flex-direction: row;
       gap: 1rem;
 
+      margin-bottom: 9rem;
+
       .addPlayer {
         flex: 1;
 
