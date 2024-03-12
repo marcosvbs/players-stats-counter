@@ -98,17 +98,47 @@ export function FinishedMatch() {
     }
   }
 
-  function handleDownload(finishedPlayerRank: RankedPlayer[]) {
-    const finishedPlayerRankAsJson = JSON.stringify(finishedPlayerRank);
+  function handleDownloadFinishedPlayerRank(
+    finishedPlayerRank: RankedPlayer[]
+  ) {
+    const columnTitles =
+      filterApplied === "byGoals"
+        ? "NOME, *GOLS*, ASSISTENCIAS \n"
+        : "NOME, GOLS, *ASSISTENCIAS* \n";
+    const appliedFilterFileName =
+      filterApplied === "byGoals" ? "por_gol_" : "por_assistencia";
 
-    const blob = new Blob([finishedPlayerRankAsJson], {
-      type: "application/vnd.ms-excel",
+    const rankLabels = new Blob([columnTitles], {
+      type: "text/plain",
+    });
+    const FormattedFinishedPlayerRank = [
+      rankLabels,
+      ...finishedPlayerRank.map(
+        (player) =>
+          new Blob(
+            [
+              player.name +
+                "," +
+                player.numGoals +
+                "," +
+                player.numAssists +
+                "\n",
+            ],
+            { type: "text/plain" }
+          )
+      ),
+    ];
+
+    const playerRankBlob = new Blob(FormattedFinishedPlayerRank, {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     });
 
+    const url = window.URL.createObjectURL(playerRankBlob);
     const downloadLink = document.createElement("a");
 
-    downloadLink.href = window.URL.createObjectURL(blob);
-    downloadLink.download = "classificacao_dos_jogadores.xls";
+    downloadLink.href = url;
+    downloadLink.download =
+      "classificacao_jogadores_" + appliedFilterFileName + "_" + todayDate;
 
     document.body.appendChild(downloadLink);
 
@@ -120,7 +150,7 @@ export function FinishedMatch() {
   useEffect(() => {
     setFinishedPlayerRank(playerRanking);
     handleFilterRankByGoals();
-  });
+  }, []);
 
   return (
     <>
@@ -174,7 +204,9 @@ export function FinishedMatch() {
           <div>
             <button
               className={"downloadFinalMatchRankButton"}
-              onClick={() => handleDownload(finishedPlayerRank)}
+              onClick={() =>
+                handleDownloadFinishedPlayerRank(finishedPlayerRank)
+              }
             >
               Baixar classificação da partida
             </button>
