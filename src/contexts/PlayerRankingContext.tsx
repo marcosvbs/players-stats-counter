@@ -42,6 +42,7 @@ export function PlayerRankingContextProvider({
     }));
 
     setPlayerRanking(newPlayerRanking);
+    localStorage.setItem("playerRank", JSON.stringify(newPlayerRanking));
   }
 
   function incrementPlayerNumGoals(playerId: number) {
@@ -53,6 +54,7 @@ export function PlayerRankingContextProvider({
     });
 
     setPlayerRanking(newPlayerRanking);
+    localStorage.setItem("playerRank", JSON.stringify(newPlayerRanking));
   }
 
   function decrementPlayerNumGoals(playerId: number) {
@@ -64,6 +66,7 @@ export function PlayerRankingContextProvider({
     });
 
     setPlayerRanking(newPlayerRanking);
+    localStorage.setItem("playerRank", JSON.stringify(newPlayerRanking));
   }
 
   function incrementPlayerNumAssists(playerId: number) {
@@ -75,6 +78,7 @@ export function PlayerRankingContextProvider({
     });
 
     setPlayerRanking(newPlayerRanking);
+    localStorage.setItem("playerRank", JSON.stringify(newPlayerRanking));
   }
 
   function decrementPlayerNumAssists(playerId: number) {
@@ -86,10 +90,12 @@ export function PlayerRankingContextProvider({
     });
 
     setPlayerRanking(newPlayerRanking);
+    localStorage.setItem("playerRank", JSON.stringify(newPlayerRanking));
   }
 
   function resetPlayerRank() {
     setPlayerRanking([]);
+    localStorage.clear();
   }
 
   return (
