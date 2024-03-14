@@ -4,13 +4,16 @@ import { ThemeProvider } from "styled-components";
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./Router/Router";
 import { PlayerRankingContextProvider } from "./contexts/PlayerRankingContext";
+import { MatchStatusContextProvider } from "./contexts/MatchStatusContext";
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <PlayerRankingContextProvider>
-          <Router />
+          <MatchStatusContextProvider>
+            <Router />
+          </MatchStatusContextProvider>
         </PlayerRankingContextProvider>
       </BrowserRouter>
       <GlobalStyle />

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MatchInProgressContainer = styled.div`
+export const FinishedMatchContainer = styled.div`
   margin: 0 auto;
   min-width: 320px;
 
@@ -22,6 +22,8 @@ export const PlayerRank = styled.table`
 
   .titleRow {
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
   }
 
   .titleRow th:nth-child(1),
@@ -66,6 +68,23 @@ export const PlayerRank = styled.table`
   .playerRow td:nth-child(3) {
     display: flex;
     flex-direction: column;
+  }
+
+  .firstPlace {
+    color: #ebb726;
+  }
+  .secondPlace {
+    color: #9fa6c4;
+  }
+  .thirdPlace {
+    color: #cb8a3e;
+  }
+
+  .playerRow td {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .playerRow button {
@@ -120,9 +139,27 @@ export const PlayerRank = styled.table`
     font-size: 12px;
     font-weight: 400;
   }
+
+  .filterButton {
+    padding: 0.25rem 0.5rem;
+
+    border: none;
+    border-radius: 10px;
+
+    color: ${(props) => props.theme["blue-600"]};
+    background: none;
+
+    &:active {
+      filter: brightness(85%);
+    }
+
+    &:disabled {
+      background: ${(props) => props.theme["blue-200"]};
+    }
+  }
 `;
 
-export const MatchControllerContainer = styled.div`
+export const FinishedMatchControllerContainer = styled.div`
   width: 100%;
 
   display: flex;
@@ -147,33 +184,28 @@ export const MatchControllerContainer = styled.div`
     width: 100%;
     max-width: 425px;
 
-    .endMatchButton {
-      width: 100%;
+    .downloadFinalMatchRankButton {
+      display: flex;
+      justify-content: center;
 
+      width: 100%;
+      padding: 0.5rem 1rem;
+
+      color: ${(props) => props.theme["blue-600"]};
       background: ${(props) => props.theme["blue-400"]};
       border-radius: 10px;
       border: none;
+
+      text-decoration: none;
 
       cursor: pointer;
 
       &:active {
         filter: brightness(85%);
       }
-
-      a {
-        display: flex;
-        justify-content: center;
-
-        width: 100%;
-        padding: 0.5rem 1rem;
-
-        color: ${(props) => props.theme["blue-600"]};
-
-        text-decoration: none;
-      }
     }
 
-    .cancelMatchButton {
+    .homeButton {
       display: flex;
       justify-content: center;
 
@@ -184,7 +216,7 @@ export const MatchControllerContainer = styled.div`
       border-radius: 10px;
       border: none;
 
-      color: ${(props) => props.theme["red-400"]};
+      color: ${(props) => props.theme["blue-600"]};
 
       cursor: pointer;
 

@@ -5,10 +5,16 @@ import {
   MatchInProgressContainer,
   PlayerRank,
 } from "./styles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PlayerRankingContext } from "../../contexts/PlayerRankingContext";
+import { CancelMatchModal } from "../../components/CancelMatchModal";
+import { EndMatchModal } from "../../components/EndMatchModal";
+import { MatchStatusContext } from "../../contexts/MatchStatusContext";
 
 export function MatchInProgress() {
+  const [cancelModalIsOpen, setCancelModalIsOpen] = useState(false);
+  const [endModalIsOpen, setEndModalIsOpen] = useState(false);
+
   const todayDate = new Date().toLocaleDateString("pt-br");
 
   const {
@@ -17,11 +23,23 @@ export function MatchInProgress() {
     decrementPlayerNumGoals,
     incrementPlayerNumAssists,
     decrementPlayerNumAssists,
+    resetPlayerRank,
   } = useContext(PlayerRankingContext);
 
-  return (
+  const { getMatchStatus, redirectBasedOnMatchStatus, resetMatchStatus } =
+    useContext(MatchStatusContext);
+
+  function handleCancelMatch() {
+    resetPlayerRank();
+    resetMatchStatus();
+  }
+
+  return getMatchStatus() != "inProgress" ? (
+    redirectBasedOnMatchStatus()
+  ) : (
     <>
       <Header />
+
       <MatchInProgressContainer>
         <h3>
           Partida em andamento <br />
@@ -71,16 +89,33 @@ export function MatchInProgress() {
 
         <MatchControllerContainer>
           <div>
-            <button className={"EndMatchButton"}>
+            <button
+              className={"endMatchButton"}
+              onClick={() => setEndModalIsOpen(true)}
+            >
               <Link to={"/match-in-progress"}>Finalizar partida</Link>
             </button>
 
-            <button className={"cancelMatchButton"}>
-              <Link to={"/"}>Cancelar partida</Link>
+            <button
+              className={"cancelMatchButton"}
+              onClick={() => setCancelModalIsOpen(true)}
+            >
+              Cancelar partida
             </button>
           </div>
         </MatchControllerContainer>
       </MatchInProgressContainer>
+
+      {cancelModalIsOpen ? (
+        <CancelMatchModal
+          onCancelMatch={handleCancelMatch}
+          onCloseModal={() => setCancelModalIsOpen(false)}
+        />
+      ) : null}
+
+      {endModalIsOpen ? (
+        <EndMatchModal onCloseModal={() => setEndModalIsOpen(false)} />
+      ) : null}
     </>
   );
 }
