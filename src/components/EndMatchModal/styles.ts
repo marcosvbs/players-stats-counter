@@ -47,10 +47,10 @@ export const ModalContainer = styled.div`
     display: flex;
     justify-content: center;
 
-    width: 100%;
     padding: 0.5rem 1rem;
 
     a {
+      width: 100%;
       text-decoration: none;
       color: ${(props) => props.theme["blue-600"]};
     }
@@ -61,6 +61,7 @@ export const ModalContainer = styled.div`
   }
 
   .closeButton {
+    width: 100%;
     border: none;
     background: none;
 

@@ -3,7 +3,7 @@ import { HeaderContainer } from "./styles";
 export function Header() {
   return (
     <HeaderContainer>
-      <span className="material-symbols-outlined">sports_and_outdoors</span>
+      <img className={"logo"} src={"../../src/assets/icon.png"} alt={""} />
     </HeaderContainer>
   );
 }
