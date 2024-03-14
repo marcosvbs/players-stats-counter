@@ -56,6 +56,14 @@ export function AddPlayers() {
     setPlayers(updatedPlayers);
   }
 
+  function checkIfAllPlayersAreNamed() {
+    const allPlayersAreNamed = players.some(
+      (player) => player.name.trim() === ""
+    );
+
+    return allPlayersAreNamed;
+  }
+
   function handleCreatePlayerRanking() {
     const namedPlayers = players.filter(
       (player) => player.name[0] !== " " && player.name.length !== 0
@@ -99,6 +107,7 @@ export function AddPlayers() {
               type={"button"}
               className={"removePlayer"}
               onClick={handleRemovePlayer}
+              disabled={players.length <= 0}
             >
               Remover
             </button>
@@ -110,6 +119,7 @@ export function AddPlayers() {
             <button
               className={"startMatchButton"}
               onClick={handleCreatePlayerRanking}
+              disabled={checkIfAllPlayersAreNamed() || players.length <= 0}
             >
               <Link to={"/match-in-progress"}>Iniciar partida</Link>
             </button>

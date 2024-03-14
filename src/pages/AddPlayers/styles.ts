@@ -81,6 +81,13 @@ export const AddPlayersContainer = styled.div`
         &:active {
           filter: brightness(85%);
         }
+
+        &:disabled {
+          background: ${(props) => props.theme["low-opacity-gray"]};
+          cursor: none;
+          pointer-events: none;
+          color: ${(props) => props.theme.gray};
+        }
       }
     }
   }
@@ -134,6 +141,18 @@ export const MatchInProgressContainer = styled.div`
         color: ${(props) => props.theme["blue-600"]};
 
         text-decoration: none;
+      }
+
+      &:disabled {
+        background: ${(props) => props.theme["low-opacity-gray"]};
+        cursor: none;
+        pointer-events: none;
+
+        a {
+          color: ${(props) => props.theme.gray};
+
+          cursor: none;
+        }
       }
     }
 
