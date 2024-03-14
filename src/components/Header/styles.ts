@@ -10,10 +10,10 @@ export const HeaderContainer = styled.header`
   width: 100%;
   background: ${(props) => props.theme["blue-400"]};
 
-  height: 3rem;
+  height: 3.5rem;
 
-  .material-symbols-outlined {
-    color: ${(props) => props.theme["blue-600"]};
-    font-size: 2rem;
+  .logo {
+    max-width: 48px;
+    max-height: 48px;
   }
 `;
