@@ -3,6 +3,7 @@ import { Header } from "../../components/Header";
 import { AddPlayersContainer, MatchInProgressContainer } from "./styles";
 import { Link } from "react-router-dom";
 import { PlayerRankingContext } from "../../contexts/PlayerRankingContext";
+import { MatchStatusContext } from "../../contexts/MatchStatusContext";
 
 interface Player {
   id: number;
@@ -18,6 +19,8 @@ export function AddPlayers() {
   ]);
 
   const { createPlayerRanking } = useContext(PlayerRankingContext);
+  const { getMatchStatus, redirectBasedOnMatchStatus, updateMatchStatus } =
+    useContext(MatchStatusContext);
 
   function onChangePlayerName(
     event: React.ChangeEvent<HTMLInputElement>,
@@ -59,9 +62,12 @@ export function AddPlayers() {
     );
 
     createPlayerRanking(namedPlayers);
+    updateMatchStatus("inProgress");
   }
 
-  return (
+  return getMatchStatus() ? (
+    redirectBasedOnMatchStatus()
+  ) : (
     <>
       <Header />
       <AddPlayersContainer>

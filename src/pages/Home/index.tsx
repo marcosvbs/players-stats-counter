@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { HomeContainer } from "./styles";
+import { useContext } from "react";
+import { MatchStatusContext } from "../../contexts/MatchStatusContext";
 
 export function Home() {
-  return (
+  const { getMatchStatus, redirectBasedOnMatchStatus } =
+    useContext(MatchStatusContext);
+
+  return getMatchStatus() ? (
+    redirectBasedOnMatchStatus()
+  ) : (
     <>
       <Header />
       <HomeContainer>

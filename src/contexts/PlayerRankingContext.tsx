@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 interface Player {
   id: number;
@@ -33,6 +33,18 @@ export function PlayerRankingContextProvider({
 }) {
   const [playerRanking, setPlayerRanking] = useState<PlayerRanking>([]);
 
+  function getPlayerRankFromLocalStorage() {
+    const playerRankInLocalStorage = localStorage.getItem("playerRank");
+
+    if (playerRankInLocalStorage) {
+      setPlayerRanking(JSON.parse(playerRankInLocalStorage));
+    }
+  }
+
+  function savePlayerRankToLocalStorage(playerRank: PlayerRanking) {
+    localStorage.setItem("playerRank", JSON.stringify(playerRank));
+  }
+
   function createPlayerRanking(playerList: Player[]) {
     const newPlayerRanking = playerList.map((player) => ({
       id: player.id,
@@ -42,7 +54,7 @@ export function PlayerRankingContextProvider({
     }));
 
     setPlayerRanking(newPlayerRanking);
-    localStorage.setItem("playerRank", JSON.stringify(newPlayerRanking));
+    savePlayerRankToLocalStorage(newPlayerRanking);
   }
 
   function incrementPlayerNumGoals(playerId: number) {
@@ -54,7 +66,7 @@ export function PlayerRankingContextProvider({
     });
 
     setPlayerRanking(newPlayerRanking);
-    localStorage.setItem("playerRank", JSON.stringify(newPlayerRanking));
+    savePlayerRankToLocalStorage(newPlayerRanking);
   }
 
   function decrementPlayerNumGoals(playerId: number) {
@@ -66,7 +78,7 @@ export function PlayerRankingContextProvider({
     });
 
     setPlayerRanking(newPlayerRanking);
-    localStorage.setItem("playerRank", JSON.stringify(newPlayerRanking));
+    savePlayerRankToLocalStorage(newPlayerRanking);
   }
 
   function incrementPlayerNumAssists(playerId: number) {
@@ -78,7 +90,7 @@ export function PlayerRankingContextProvider({
     });
 
     setPlayerRanking(newPlayerRanking);
-    localStorage.setItem("playerRank", JSON.stringify(newPlayerRanking));
+    savePlayerRankToLocalStorage(newPlayerRanking);
   }
 
   function decrementPlayerNumAssists(playerId: number) {
@@ -90,13 +102,17 @@ export function PlayerRankingContextProvider({
     });
 
     setPlayerRanking(newPlayerRanking);
-    localStorage.setItem("playerRank", JSON.stringify(newPlayerRanking));
+    savePlayerRankToLocalStorage(newPlayerRanking);
   }
 
   function resetPlayerRank() {
     setPlayerRanking([]);
-    localStorage.clear();
+    localStorage.removeItem("playerRank");
   }
+
+  useEffect(() => {
+    getPlayerRankFromLocalStorage();
+  }, []);
 
   return (
     <PlayerRankingContext.Provider

@@ -9,6 +9,7 @@ import { useContext, useState } from "react";
 import { PlayerRankingContext } from "../../contexts/PlayerRankingContext";
 import { CancelMatchModal } from "../../components/CancelMatchModal";
 import { EndMatchModal } from "../../components/EndMatchModal";
+import { MatchStatusContext } from "../../contexts/MatchStatusContext";
 
 export function MatchInProgress() {
   const [cancelModalIsOpen, setCancelModalIsOpen] = useState(false);
@@ -25,11 +26,17 @@ export function MatchInProgress() {
     resetPlayerRank,
   } = useContext(PlayerRankingContext);
 
+  const { getMatchStatus, redirectBasedOnMatchStatus, resetMatchStatus } =
+    useContext(MatchStatusContext);
+
   function handleCancelMatch() {
     resetPlayerRank();
+    resetMatchStatus();
   }
 
-  return (
+  return getMatchStatus() != "inProgress" ? (
+    redirectBasedOnMatchStatus()
+  ) : (
     <>
       <Header />
 

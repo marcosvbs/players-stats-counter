@@ -35,7 +35,7 @@ export const ModalContainer = styled.div`
     width: 100%;
   }
 
-  .endMatchLink {
+  .endMatchButton {
     width: 100%;
 
     background: ${(props) => props.theme["blue-400"]};
@@ -50,9 +50,10 @@ export const ModalContainer = styled.div`
     width: 100%;
     padding: 0.5rem 1rem;
 
-    color: ${(props) => props.theme["blue-600"]};
-
-    text-decoration: none;
+    a {
+      text-decoration: none;
+      color: ${(props) => props.theme["blue-600"]};
+    }
 
     &:active {
       filter: brightness(85%);

@@ -7,6 +7,7 @@ import {
   PlayerRank,
 } from "./styles";
 import { GoToHomeModal } from "../../components/GoToHomeModal";
+import { MatchStatusContext } from "../../contexts/MatchStatusContext";
 
 interface RankedPlayer {
   id: number;
@@ -29,9 +30,12 @@ export function FinishedMatch() {
   const todayDate = new Date().toLocaleDateString("pt-br");
 
   const { playerRanking, resetPlayerRank } = useContext(PlayerRankingContext);
+  const { getMatchStatus, redirectBasedOnMatchStatus, resetMatchStatus } =
+    useContext(MatchStatusContext);
 
   function handleCancelMatch() {
     resetPlayerRank();
+    resetMatchStatus();
   }
 
   function compareMostGoalsPlayer(a: RankedPlayer, b: RankedPlayer) {
@@ -152,7 +156,9 @@ export function FinishedMatch() {
     handleFilterRankByGoals();
   }, []);
 
-  return (
+  return getMatchStatus() != "finished" ? (
+    redirectBasedOnMatchStatus()
+  ) : (
     <>
       <Header />
 
