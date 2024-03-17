@@ -1,30 +1,69 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Static Badge](https://img.shields.io/badge/Project%20Status%20-%20Completed%20-%20Green) ![GitHub License](https://img.shields.io/github/license/marcosvbs/players-stats-counter)
 
-Currently, two official plugins are available:
+# [Players Stats Counter](https://players-stats-counter.vercel.app/)
+An mobile web application for counting goals and assists between the players in a football match.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img src="src/assets/project-preview.png">
 
-## Expanding the ESLint configuration
+<br />
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Contents
+[Tech Stack](#tech-stack) -
+[Prerequisites](#prerequisites) -
+[Dependencies](#dependencies) -
+[Installing and Running](#installing-and-running) -
+[Author](#author)
 
-- Configure the top-level `parserOptions` property like this:
+<br />
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Tech Stack
+- React
+- Typescript
+
+<br />
+
+## Prerequisites
+- Git
+- Node.js v20.3.1 (or higher)
+
+<br />
+
+## Dependencies
+- React v18.2.0 (or higher)
+- React-router-dom v6.22.2 (or higher)
+- Styled-components v6.1.8 (or higher)
+
+<br />
+
+## Installing and Running
+1. Clone this repository:
 ```
+git clone https://github.com/marcosvbs/players-stats-counter
+```
+2. Access the repository page:
+```
+cd players-stats-counter
+```
+3. Install dependencies:
+```
+npm install
+```
+4. Run the project:
+```
+npm run dev
+```
+5. The application will start on port:5173 - Access <http://localhost:5173>.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+<br />
+
+## Author
+<img src="https://github.com/marcosvbs.png" width="100"> 
+<a href="https://github.com/marcosvbs">Marcos dos Santos</a>
+<br />
+<br />
+Made with ❤️ by Marcos dos Santos 👋🏽 Get in touch!
+<br />
+Linkedin: https://www.linkedin.com/in/marcosdossantos
+<br />
+Mail: rrmarcosdossantos@gmail.com
